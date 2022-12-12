@@ -530,10 +530,10 @@ This will generate a file named `ratings_<timestamp>.csv` inside the `api` folde
 
 ```csv
 Channel Title,Rating
+TV Shows,7.70
+Vikings,7.70
 Audible,0.00
 Movies,0.00
-TV Shows,15.40
-Vikings,15.40
 Lifestyle,0.00
 Music & Podcasts,0.00
 Kids,0.00
