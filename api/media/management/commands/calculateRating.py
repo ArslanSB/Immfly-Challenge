@@ -26,6 +26,9 @@ class Command(BaseCommand):
       # calculate the rating for this channel
       self.calculateChannelRating(channel=channel)
 
+    # sort the dict by rating
+    self.channelRatings = dict(sorted(self.channelRatings.items(), key=lambda item: item[1], reverse=True))
+
     # generate a CSV file from the dict
     self.generateCSVData(output)
 
@@ -53,6 +56,11 @@ class Command(BaseCommand):
     for content in contents:
       # sum the content rating value to the channel rating
       self.channelRatings[channel.title] += content.rating
+    
+    # if the rating is above 0 that means there is at least one content or subchannel
+    if self.channelRatings[channel.title] > 0:
+      # get the average by deviding the rating by the sum of content and subChannels
+      self.channelRatings[channel.title] = self.channelRatings[channel.title] / (subChannels.count() + contents.count())
   
   def generateCSVData(self, output):
     # open the file in write mode
